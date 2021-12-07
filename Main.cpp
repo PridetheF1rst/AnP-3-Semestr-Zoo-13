@@ -384,28 +384,31 @@ int main()
 		case 10:
 		{
 			system("cls");
-			switch (menu(yes_no, sizeof(yes_no), "Вы хотите файл перед выходом ?"))
+			if (beg)
 			{
-			case 0:
-				cursor_off_on(TRUE);
-				if (beg) { cin.ignore(); }
-				filename = inp_filename(filename, "Введите имя файла , который хотите сохранить(без расширения)");
-				cursor_off_on(FALSE);
-				switch (menu(type, sizeof(type), "В каком расширении вы хотите сохранить файл ?"))
+				switch (menu(yes_no, sizeof(yes_no), "Вы хотите файл перед выходом ?"))
 				{
-					SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
 				case 0:
-					filename += ".txt";
+					cursor_off_on(TRUE);
+					if (beg) { cin.ignore(); }
+					filename = inp_filename(filename, "Введите имя файла , который хотите сохранить(без расширения)");
+					cursor_off_on(FALSE);
+					switch (menu(type, sizeof(type), "В каком расширении вы хотите сохранить файл ?"))
+					{
+						SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
+					case 0:
+						filename += ".txt";
+						break;
+					case 1:
+						filename += ".data";
+						break;
+					}
+					write_in_file(filename, beg);
+					system("pause");
 					break;
 				case 1:
-					filename += ".data";
 					break;
 				}
-				write_in_file(filename, beg);
-				system("pause");
-				break;
-			case 1:
-				break;
 			}
 			SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
 			cout << "До свидания" << endl;

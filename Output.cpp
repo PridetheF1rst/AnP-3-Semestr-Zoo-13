@@ -24,6 +24,7 @@ void see_the_information(zoo* beg,zoo* end)
 			if (temp->next == nullptr)
 			{
 				if (count == 0)cout << endl << "Для перехода на предыдущую страницу нажмите <-\t\t\t" << "Страница номер " << page_end << " из " << page_end << endl;
+				cout << endl << "\t\t\t\t\t\t\tДля выхода нажмите Esc "<< endl;
 				count++;
 				key = _getch();
 				switch (key)
@@ -55,6 +56,8 @@ void see_the_information(zoo* beg,zoo* end)
 					header();
 					break;
 				}
+				case Esc:
+					goto end;
 				default:
 					break;
 				}
@@ -70,6 +73,7 @@ void see_the_information(zoo* beg,zoo* end)
 					{
 						if (page == 1) cout << endl << "\t\t\t\t\t\t\t" << "Страница номер " << page << " из " << page_end << "\t\t\tДля перехода на следующую страницу нажмите ->" << endl;
 						else cout << endl << "Для перехода на предыдущую страницу нажмите <-\t\t\t" << "Страница номер " << page << " из " << page_end << "\t\t\tДля перехода на следующую страницу нажмите ->" << endl;
+						cout << endl << "\t\t\t\t\t\t\tДля выхода нажмите Esc " << endl;
 
 					}
 					key = _getch();
@@ -97,6 +101,8 @@ void see_the_information(zoo* beg,zoo* end)
 						else temp = beg;
 						break;
 					}
+					case Esc:
+						goto end;
 					default:
 						break;
 					}
@@ -108,6 +114,8 @@ void see_the_information(zoo* beg,zoo* end)
 			}
 		}
 		cout << endl;
+	end:
+		return;
 	}
 }
 

@@ -97,6 +97,7 @@ int main()
 	"Удалить весь список.",
 	"Удалить конкретный элемент."
 	};
+	int count_input = 0,count_id_del=0,count_id_change=0;
 	cursor_off_on(FALSE);
 	switch (menu(hello, sizeof(hello), "Для взаимодействия с программой необходимо использовать или создать список.\nВыберите пункт меню"))
 	{
@@ -183,7 +184,11 @@ int main()
 
 			system("cls");
 			cursor_off_on(TRUE);
-			if (beg) { end = add(end, input()); }//если существует хотя бы один элемент- добавляем новый
+			if (beg) 
+			{
+				if (filename != "" && count_input == 0) { cin.ignore(); count_input++; }
+					end = add(end, input());
+			}//если существует хотя бы один элемент- добавляем новый
 			else
 			{
 				beg = add_first(input());//если не существует ни одного элемента - создаём первый
@@ -233,9 +238,9 @@ int main()
 
 						SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
 						int num = 0;
-						cin.clear();
+						if (filename != "" && count_id_del == 0) { cin.ignore(); count_id_del++; }
 						num = inp_int(num, "Введите ID элемента");
-						cursor_off_on(FALSE);
+						cursor_off_on(FALSE); 
 						if (num<1 || num>end->id)
 						{
 							cout << "Невозможно выполнить удаление!" << endl;
@@ -278,6 +283,7 @@ int main()
 				int num = 0;
 				cursor_off_on(TRUE);
 				SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
+				if (filename != "" && count_id_change == 0) { cin.ignore(); count_id_change++; }
 				num = inp_int(num, "Введите ID элемента");
 				cursor_off_on(FALSE);
 				if (num<1 || num>end->id)
@@ -285,7 +291,20 @@ int main()
 					cout << "Невозможно выполнить изменение!" << endl;
 					cout << "Введенноё ID не находится в диапазоне от " << beg->id << " до " << end->id << endl;
 				}
-				else change(beg, end, num);
+				else
+				{
+					cout << "Выбранный вами элемент :" << endl;
+					search_id(beg, num);
+					system("cls");
+					switch (menu(yes_no, sizeof(yes_no), "Вы действительно хотите изменить этот элемент ?"))
+					{
+					case 0:
+						change(beg, end, num);
+						break;
+					case 1:
+						break;
+					}
+				}
 			}
 			else { cout << "Невозможно выполнить операцию ! Очередь пуста!" << endl; }
 			system("pause");

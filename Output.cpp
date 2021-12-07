@@ -5,55 +5,107 @@
 #include "Output.h"
 
 /*Просмотр списка*/
-void see_the_information(zoo* beg)
+void see_the_information(zoo* beg,zoo* end)
 {
 	if (!beg) { cout << "Информация отсутствует !" << endl;  return; }
 	else
 	{
 		int key;
+		bool go = false;
+		int page,count=0;
+		float page_end;
+		if (end->id % print == 0) page_end = end->id / print;
+		else page_end = (end->id / print) + 1;
 		zoo* temp = beg;//указатель на начало списка
-		start:
 		cout << "Список животных зоопарка:" << endl;
 		header();
-		while (temp)//пока список не кончился
+		while (!go)//пока список не кончился
 		{
-			print_on_the_screen(*temp);
-			if (temp->next && temp->next->id % print == 1)//если следущий элемент - 14 , 
+			if (temp->next == nullptr)
 			{
-				cout << endl;
+				if (count == 0)cout << endl << "Для перехода на предыдущую страницу нажмите <-\t\t\t" << "Страница номер " << page_end << " из " << page_end << endl;
+				count++;
 				key = _getch();
 				switch (key)
 				{
 				case  Right:
 				{
-					if (temp->next != nullptr)
-					{
-						temp = temp->next;
-					}
-					else system("pause"); break;
+					if (count != 1) cout << "Нажмите Enter" << endl;
+					cin.ignore();
+					go = true;
+					return;
 				}
 				case Left:
 				{
-					if (temp->id != 13)
+					count = 0;
+					int i = 0;
+					while (temp->prev->id % 13 != 0)
 					{
-						int i = 0;
-						while (i < print)
-						{
-							temp = temp->prev;
-							i++;
-						}
+						temp = temp->prev;
+						i++;
 					}
-					else temp = beg;
+					i = 0;
+					while (i < 12)
+					{
+						temp = temp->prev;
+						i++;
+					}
+					system("cls");
+					cout << "Список животных зоопарка:" << endl;
+					header();
 					break;
 				}
 				default:
 					break;
 				}
-				system("cls");
-				cout << "Список животных зоопарка:" << endl;
-				header();
 			}
-			else temp = temp->next;
+			else
+			{
+				print_on_the_screen(*temp);
+				if (temp->next && temp->next->id % print == 1)//если следущий элемент - 14 , 
+				{
+					page = temp->id / print;
+					if (page == page_end ) go = true;
+					else
+					{
+						if (page == 1) cout << endl << "\t\t\t\t\t\t\t" << "Страница номер " << page << " из " << page_end << "\t\t\tДля перехода на следующую страницу нажмите ->" << endl;
+						else cout << endl << "Для перехода на предыдущую страницу нажмите <-\t\t\t" << "Страница номер " << page << " из " << page_end << "\t\t\tДля перехода на следующую страницу нажмите ->" << endl;
+
+					}
+					key = _getch();
+					switch (key)
+					{
+					case  Right:
+					{
+						if (temp->next != nullptr)
+						{
+							temp = temp->next;
+						}
+						else system("pause"); break;
+					}
+					case Left:
+					{
+						if (temp->id != 13)
+						{
+							int i = 0;
+							while (i < 2 * print - 1)
+							{
+								temp = temp->prev;
+								i++;
+							}
+						}
+						else temp = beg;
+						break;
+					}
+					default:
+						break;
+					}
+					system("cls");
+					cout << "Список животных зоопарка:" << endl;
+					header();
+				}
+				else temp = temp->next;
+			}
 		}
 		cout << endl;
 	}

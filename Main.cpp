@@ -308,7 +308,7 @@ int main()
 		case 6:
 		{
 			system("cls");
-			see_the_information(beg);
+			see_the_information(beg,end);
 			system("pause");
 			break;
 		}

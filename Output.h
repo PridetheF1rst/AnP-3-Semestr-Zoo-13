@@ -4,7 +4,7 @@
 #include "zoo.h"
 
 void print_on_the_screen(const zoo& z);//просмотр элемента  
-void see_the_information(zoo* beg);//просмотр всей информации
+void see_the_information(zoo* beg, zoo* end);//просмотр всей информации
 void header();//заголовок
 void header_proccessing();//заголовок для обработки
 void print_processing(const zoo& z);//Вывод элемента обработки на экран

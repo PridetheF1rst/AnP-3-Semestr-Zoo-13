@@ -164,6 +164,9 @@
     <ClInclude Include="Sort.h" />
     <ClInclude Include="zoo.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="zoo.ico" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

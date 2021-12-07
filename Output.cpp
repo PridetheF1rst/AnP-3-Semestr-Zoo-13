@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 #include "zoo.h"
 #include "Processing.h"
 #include "Output.h"
@@ -11,46 +12,48 @@ void see_the_information(zoo* beg)
 	{
 		int key;
 		zoo* temp = beg;//указатель на начало списка
+		start:
 		cout << "Список животных зоопарка:" << endl;
 		header();
 		while (temp)//пока список не кончился
 		{
 			print_on_the_screen(*temp);
-			if (temp->next && temp->next->id % print == 1)//если следущий элемент - 13 , 
-			{/*
+			if (temp->next && temp->next->id % print == 1)//если следущий элемент - 14 , 
+			{
+				cout << endl;
 				key = _getch();
 				switch (key)
 				{
-				case  Down:
+				case  Right:
 				{
-					if (temp->next!=nullptr)
+					if (temp->next != nullptr)
 					{
 						temp = temp->next;
 					}
-					break;
+					else system("pause"); break;
 				}
-				case Up:
+				case Left:
 				{
-					if (temp->id!=beg->id)
+					if (temp->id != 13)
 					{
-						for (int i = 0; i < print; i++)
+						int i = 0;
+						while (i < print)
 						{
 							temp = temp->prev;
+							i++;
 						}
 					}
+					else temp = beg;
 					break;
 				}
 				default:
 					break;
 				}
-				*/
-				cout << endl;
-				system("pause");
 				system("cls");
 				cout << "Список животных зоопарка:" << endl;
 				header();
 			}
-			temp = temp->next;//переход к следующей структуре
+			else temp = temp->next;
 		}
 		cout << endl;
 	}

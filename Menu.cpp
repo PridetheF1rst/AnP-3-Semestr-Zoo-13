@@ -18,7 +18,6 @@ void GetBufferInfo(COORD* coord)
 	coord->Y = (csbInfo.srWindow.Bottom - csbInfo.srWindow.Top + 1);
 }
 
-
 int menu(string menuElems[], int size, const char* inf)
 {
 	COORD coord1;

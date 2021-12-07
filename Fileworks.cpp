@@ -5,7 +5,6 @@
 #include "zoo.h"
 #include "Queue.h"
 
-
 HANDLE FileworksHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 
 /*Чтение из файла*/

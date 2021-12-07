@@ -19,7 +19,6 @@ int main_menu()
 	start:
 	switch (menu(main_menu_buttons, sizeof(main_menu_buttons), "Добро пожаловать в программу работы с зоопарком !\n================================================="))
 	{
-		
 	case 0:
 		return 0;
 	case 1:

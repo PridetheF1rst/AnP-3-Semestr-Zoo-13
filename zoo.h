@@ -57,7 +57,6 @@ struct zoo //структура с информацией
 
 	struct zoo* next;//следущий элемент
 	struct zoo* prev;//предыдущий элемент
-
 };
 
 #endif

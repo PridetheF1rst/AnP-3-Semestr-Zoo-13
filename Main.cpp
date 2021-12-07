@@ -64,10 +64,8 @@ int main()
 
 	main_menu();
 
-
 	zoo* beg = 0,//начало и
 		* end = 0;//конец равны нулю
-
 
 	string filename = "";
 	string hello[] = {

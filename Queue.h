@@ -9,4 +9,5 @@ zoo* dellete_id_beg(zoo* beg);//подфункции
 zoo* dellete_id_end(zoo* beg, zoo* end);//нужные
 zoo* dellete_id(zoo* beg, zoo* end, int num);//для
 void dellete_all(zoo* beg);//удаления
+
 #endif

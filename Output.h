@@ -9,4 +9,5 @@ void header();//заголовок
 void header_proccessing();//заголовок для обработки
 void print_processing(const zoo& z);//Вывод элемента обработки на экран
 void show_processing(zoo* beg);//Вывод списка элементов обработки
+
 #endif

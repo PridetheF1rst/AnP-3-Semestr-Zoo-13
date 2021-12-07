@@ -8,8 +8,6 @@
 
 HANDLE ChangeHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 
-
-
 /*Функция корректировки*/
 void change(zoo* beg, zoo* end, int id_num)
 {

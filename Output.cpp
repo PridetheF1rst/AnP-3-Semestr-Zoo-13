@@ -149,5 +149,4 @@ void show_processing(zoo* beg)
 	printf("%31s", " ");
 	for (int i = 0; i < 48; i++) cout << "=";
 	cout << endl;
-
 }

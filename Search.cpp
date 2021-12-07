@@ -39,6 +39,7 @@ void search(zoo* beg)
 			"Стоимоисть потребляемых продуктов (в рублях)",
 			"Дату"
 		};
+
 		switch (menu(how_searh, sizeof(how_searh), "По какому параметру вы хотите найти ? "))
 		{
 			SetConsoleTextAttribute(SearchHandle, (WORD)((Black << 4) | Yellow));

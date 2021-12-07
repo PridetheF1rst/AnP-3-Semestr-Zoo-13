@@ -112,10 +112,7 @@ void sort_replace(zoo* left, zoo* right, zoo* temp)
 /*Сортировка по номеру вольера*/
 void sort_cage(zoo* beg, int how_sort)
 {
-	zoo* left = beg;
-	zoo* right = beg->next;
-
-	zoo* temp = new zoo;
+	zoo* left = beg,* right = beg->next, * temp = new zoo;
 
 	while (left->next)
 	{
@@ -146,10 +143,7 @@ void sort_cage(zoo* beg, int how_sort)
 /*Сортировка по кличке*/
 void sort_name(zoo* beg, int how_sort)
 {
-	zoo* left = beg;
-	zoo* right = beg->next;
-
-	zoo* temp = new zoo;
+	zoo* left = beg, * right = beg->next, * temp = new zoo;
 
 	while (left->next)
 	{
@@ -180,10 +174,7 @@ void sort_name(zoo* beg, int how_sort)
 /*Сортировка по породе*/
 void sort_specie(zoo* beg, int how_sort)
 {
-	zoo* left = beg;
-	zoo* right = beg->next;
-
-	zoo* temp = new zoo;
+	zoo* left = beg, * right = beg->next, * temp = new zoo;
 
 	while (left->next)
 	{
@@ -214,10 +205,7 @@ void sort_specie(zoo* beg, int how_sort)
 /*Сортировка по ареалу обитания*/
 void sort_area(zoo* beg, int how_sort)
 {
-	zoo* left = beg;
-	zoo* right = beg->next;
-
-	zoo* temp = new zoo;
+	zoo* left = beg, * right = beg->next, * temp = new zoo;
 
 	while (left->next)
 	{
@@ -248,10 +236,7 @@ void sort_area(zoo* beg, int how_sort)
 /*Сортировка по типу продуктов*/
 void sort_p_type(zoo* beg, int how_sort)
 {
-	zoo* left = beg;
-	zoo* right = beg->next;
-
-	zoo* temp = new zoo;
+	zoo* left = beg, * right = beg->next, * temp = new zoo;
 
 	while (left->next)
 	{
@@ -282,10 +267,7 @@ void sort_p_type(zoo* beg, int how_sort)
 /*Сортировка по весу продуктов*/
 void sort_p_weight(zoo* beg, int how_sort)
 {
-	zoo* left = beg;
-	zoo* right = beg->next;
-
-	zoo* temp = new zoo;
+	zoo* left = beg, * right = beg->next, * temp = new zoo;
 
 	while (left->next)
 	{
@@ -317,10 +299,7 @@ void sort_p_weight(zoo* beg, int how_sort)
 /*Сортировка по количеству затраченнных денег на продукты*/
 void sort_p_money(zoo* beg, int how_sort)
 {
-	zoo* left = beg;
-	zoo* right = beg->next;
-
-	zoo* temp = new zoo;
+	zoo* left = beg, * right = beg->next, * temp = new zoo;
 
 	while (left->next)
 	{

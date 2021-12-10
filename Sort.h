@@ -1,9 +1,10 @@
 #ifndef SORT_H
 #define SORT_H
 #pragma once
+#include <setjmp.h>
 #include "zoo.h"
 
-void sort_by_field(zoo* beg);//сортировка
+void sort_by_field(zoo* beg,jmp_buf env);//сортировка
 void sort_cage(zoo* beg, int how_sort);//сортировка по номеру вольера
 void sort_name(zoo* beg, int how_sort);//сортировка по кличке
 void sort_specie(zoo* beg, int how_sort);//сортировка по породе

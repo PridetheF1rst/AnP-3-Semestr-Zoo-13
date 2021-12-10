@@ -1,9 +1,10 @@
 #ifndef SEARCH_H
 #define SEARCH_H
 #pragma once
+#include <setjmp.h>
 #include "zoo.h"
 
-void search(zoo* beg);//поиск не по ключевому полю
+void search(zoo* beg,jmp_buf env);//поиск не по ключевому полю
 void search_cage(zoo* beg, int num_cage);//поиск по номеру клетки
 void search_name(zoo* beg, char* pet_name);//поиск по кличке
 void search_specie(zoo* beg, char* pet_specie);//поиск по породе

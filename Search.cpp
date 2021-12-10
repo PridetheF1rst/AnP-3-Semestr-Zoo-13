@@ -12,7 +12,7 @@
 HANDLE SearchHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 
 /*Функция поиска , объединяющая остальные подфункции*/
-void search(zoo* beg)
+void search(zoo* beg,jmp_buf env)
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
@@ -37,10 +37,11 @@ void search(zoo* beg)
 			"Тип продуктов",
 			"Вес продуктов (в килограммах)",
 			"Стоимоисть потребляемых продуктов (в рублях)",
-			"Дату"
+			"Дату",
+			"Вернуться в меню"
 		};
 
-		switch (menu(how_searh, sizeof(how_searh), "По какому параметру вы хотите найти ? "))
+		switch (menu_category(how_searh, sizeof(how_searh), "По какому параметру вы хотите найти ? \n Вы можете нажать ESC для выхода в меню",env))
 		{
 			SetConsoleTextAttribute(SearchHandle, (WORD)((Black << 4) | Yellow));
 		case 0:
@@ -91,6 +92,8 @@ void search(zoo* beg)
 			inp_date(data);
 			search_date(beg, data);
 			break;
+		case 8:
+			return;
 		}
 	}
 	else

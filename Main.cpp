@@ -33,6 +33,7 @@
 #include <stdlib.h>
 #include <Windows.h>
 #include <ctype.h>
+#include <setjmp.h>
 #include "zoo.h"
 #include "Change.h"
 #include "Fileworks.h"
@@ -131,7 +132,8 @@ int main()
 
 	do
 	{
-		start_menu:
+		jmp_buf start_menu ;
+		setjmp(start_menu);
 		cursor_off_on(FALSE);
 		switch (menu(menuElems, sizeof(menuElems), "Система работы с зоопарком\n==================================\nИспользуйте стрелочки для перемещения"))
 		{
@@ -141,7 +143,7 @@ int main()
 			system("cls");
 			if (beg != 0)
 			{
-				switch (menu(yes_no, sizeof(yes_no), "Для создание нового списка требуется удалить старый . Вы хотите сохранить старый список ?"))
+				switch (menu_category(yes_no, sizeof(yes_no), "Для создание нового списка требуется удалить старый . Вы хотите сохранить старый список ?\n Вы можете нажать ESC для выхода в меню", start_menu))
 				{
 					SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
 				case 0:
@@ -210,7 +212,7 @@ int main()
 			if (!beg) { cout << "Невозможно выполнить операцию ! Очередь пуста!" << endl; }
 			else
 			{
-				switch (menu(delete_e, sizeof(delete_e), "Вы хотите удалить весь список или конкретный элемент ?"))
+				switch (menu_category(delete_e, sizeof(delete_e), "Вы хотите удалить весь список или конкретный элемент ?\n Вы можете нажать ESC для выхода в меню",start_menu))
 				{
 					case 0:
 						{
@@ -313,14 +315,14 @@ int main()
 		case 4:
 		{
 			system("cls");
-			sort_by_field(beg);
+			sort_by_field(beg,start_menu);
 			system("pause");
 			break;
 		}
 		case 5:
 		{
 			system("cls");
-			search(beg);
+			search(beg,start_menu);
 			system("pause");
 			break;
 		}
@@ -389,25 +391,37 @@ int main()
 				switch (menu(yes_no, sizeof(yes_no), "Вы хотите файл перед выходом ?"))
 				{
 				case 0:
-					cursor_off_on(TRUE);
-					if (beg) { cin.ignore(); }
-					filename = inp_filename(filename, "Введите имя файла , который хотите сохранить(без расширения)");
-					cursor_off_on(FALSE);
-					switch (menu(type, sizeof(type), "В каком расширении вы хотите сохранить файл ?"))
+				{
+					switch (menu(yes_no, sizeof(yes_no), "Вы хотите файл перед выходом ?"))
 					{
-						SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
 					case 0:
-						filename += ".txt";
-						break;
-					case 1:
-						filename += ".data";
+					{
+						cursor_off_on(TRUE);
+						if (beg) { cin.ignore(); }
+						filename = inp_filename(filename, "Введите имя файла , который хотите сохранить(без расширения)");
+						cursor_off_on(FALSE);
+						switch (menu(type, sizeof(type), "В каком расширении вы хотите сохранить файл ?"))
+						{
+							SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
+						case 0:
+							filename += ".txt";
+							break;
+						case 1:
+							filename += ".data";
+							break;
+						}
+						write_in_file(filename, beg);
+						system("pause");
 						break;
 					}
-					write_in_file(filename, beg);
-					system("pause");
-					break;
+					case 1:
+						break;
+					}
+				}
 				case 1:
-					break;
+				{
+					longjmp(start_menu,0);
+				}
 				}
 			}
 			SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));

@@ -23,19 +23,11 @@ void see_the_information(zoo* beg,zoo* end)
 		{
 			if (temp->next == nullptr)
 			{
-				if (count == 0)cout << endl << "Для перехода на предыдущую страницу нажмите <-\t\t\t" << "Страница номер " << page_end << " из " << page_end << endl;
-				cout << endl << "\t\t\t\t\t\t\tДля выхода нажмите Esc "<< endl;
+				if (count == 0)cout << endl << "Для перехода на предыдущую страницу нажмите <-\t\t\t" << "Страница номер " << page_end << " из " << page_end << "\t\t\t\t\t  Для выхода нажмите Esc " << endl;
 				count++;
 				key = _getch();
 				switch (key)
 				{
-				case  Right:
-				{
-					if (count != 1) cout << "Нажмите Enter" << endl;
-					cin.ignore();
-					go = true;
-					return;
-				}
 				case Left:
 				{
 					count = 0;
@@ -59,6 +51,7 @@ void see_the_information(zoo* beg,zoo* end)
 				case Esc:
 					goto end;
 				default:
+					cin.ignore();
 					break;
 				}
 			}

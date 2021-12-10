@@ -7,7 +7,7 @@
 HANDLE sortHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 
 /*Функция сортировки , объединяющая остальные подфункции*/
-void sort_by_field(zoo* beg)
+void sort_by_field(zoo* beg,jmp_buf env)
 {
 	int how_sort;
 	string _sort[] = { " По возрастанию " ," По убыванию " };
@@ -24,7 +24,7 @@ void sort_by_field(zoo* beg)
 
 	if (beg)
 	{
-		how_sort = menu(_sort, sizeof(_sort), "Какую сортировку вы хотите выбрать ?");
+		how_sort = menu_category(_sort, sizeof(_sort), "Какую сортировку вы хотите выбрать ?\n Вы можете нажать ESC для выхода в меню",env);
 		SetConsoleTextAttribute(sortHandle, (WORD)((Black << 4) | Yellow));
 		zoo* temp_1, temp_2;
 		switch (menu(field, sizeof(field), "По какому параметру вы хотите отсортировать ? "))

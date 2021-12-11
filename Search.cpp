@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <stdlib.h>
+#include <cstdlib>
 #include <Windows.h>
 #include "zoo.h"
 #include "Queue.h"

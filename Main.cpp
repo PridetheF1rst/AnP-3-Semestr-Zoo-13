@@ -389,8 +389,8 @@ int main()
 			{
 				switch (menu(yes_no, sizeof(yes_no), "Вы хотите файл перед выходом ?"))
 				{
-				case 0:
-				{
+					case 0:
+					{
 					switch (menu(yes_no, sizeof(yes_no), "Вы хотите файл перед выходом ?"))
 					{
 					case 0:
@@ -417,9 +417,9 @@ int main()
 						break;
 					}
 				}
-				case 1:
-				{
-					longjmp(start_menu,0);
+					case 1:
+					{
+					break;
 				}
 				}
 			}

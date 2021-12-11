@@ -28,11 +28,10 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
-#include <time.h>
 #include <conio.h>
-#include <stdlib.h>
+#include <cstdlib>
 #include <Windows.h>
-#include <ctype.h>
+#include <cctype>
 #include <setjmp.h>
 #include "zoo.h"
 #include "Change.h"

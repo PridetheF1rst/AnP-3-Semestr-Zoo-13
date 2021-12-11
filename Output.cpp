@@ -51,7 +51,6 @@ void see_the_information(zoo* beg,zoo* end)
 				case Esc:
 					goto end;
 				default:
-					cin.ignore();
 					break;
 				}
 			}

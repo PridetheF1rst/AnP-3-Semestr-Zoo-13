@@ -44,7 +44,7 @@ void change(zoo* beg, zoo* end, int id_num)
 			{
 				switch (menu(change_menu, sizeof(change_menu), "Что вы хотите поменять ? "))
 				{
-					SetConsoleTextAttribute(ChangeHandle, (WORD)((Black << 4) | Yellow));
+					SetConsoleTextAttribute(ChangeHandle, (WORD)((White << 4) | Blue));
 				case 0:
 					system("cls");
 					cin.ignore();

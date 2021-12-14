@@ -19,26 +19,27 @@ void see_the_information(zoo* beg,zoo* end)
 		zoo* temp = beg;//указатель на начало списка
 		cout << "Список животных зоопарка:" << endl;
 		header();
-		while (!go)//пока список не кончился
+		do//пока список не кончился
 		{
+			print_on_the_screen(*temp);
 			if (temp->next == nullptr)
 			{
-				if (count == 0)cout << endl << "Для перехода на предыдущую страницу нажмите <-\t\t\t" << "Страница номер " << page_end << " из " << page_end << "\t\t\t\t\t  Для выхода нажмите Esc " << endl;
-				count++;
+				if (beg->id != temp->id) cout << endl << "Для перехода на предыдущую страницу нажмите <-";
+				else cout <<endl<< "\t\t\t\t\t";
+				cout<<"\t\t\t" << "Страница номер " << page_end << " из " << page_end << "\t\t\t\t\t  Для выхода нажмите Esc " << endl;
 				key = _getch();
 				switch (key)
 				{
 				case Left:
 				{
-					count = 0;
 					int i = 0;
-					while (temp->prev->id % 13 != 0)
+					while (temp->prev->id % 13 != 0 && temp->prev!=nullptr)
 					{
 						temp = temp->prev;
 						i++;
 					}
 					i = 0;
-					while (i < 12)
+					while (i < 12 && temp->prev != nullptr)
 					{
 						temp = temp->prev;
 						i++;
@@ -56,7 +57,6 @@ void see_the_information(zoo* beg,zoo* end)
 			}
 			else
 			{
-				print_on_the_screen(*temp);
 				if (temp->next && temp->next->id % print == 1)//если следущий элемент - 14 , 
 				{
 					page = temp->id / print;
@@ -104,7 +104,8 @@ void see_the_information(zoo* beg,zoo* end)
 				}
 				else temp = temp->next;
 			}
-		}
+
+		} while (!go);
 		cout << endl;
 	end:
 		return;

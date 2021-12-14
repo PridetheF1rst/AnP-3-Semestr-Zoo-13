@@ -2,7 +2,7 @@
 #include <string>
 #include <conio.h>
 #include <Windows.h>
-#include <setjmp.h>
+#include <csetjmp>
 #include "zoo.h"
 #include "Main_Menu.h"
 
@@ -30,21 +30,23 @@ int menu(string menuElems[], int size, const char* inf)
 	while (true)
 	{
 		coord1 = coord;
-		SetConsoleTextAttribute(consoleHandle, (WORD)((Black << 4) | Yellow));
+		SetConsoleTextAttribute(consoleHandle, (WORD)((White << 4) | Blue));
 		system("cls");
 		cout << inf << endl;
 		for (int i = 0; i < size / sizeof(menuElems[0]); i++)
 		{
-			SetConsoleCursorPosition(consoleHandle, coord1);
+			COORD z;
+			z.X = 22; z.Y = 15 + i;
+			//SetConsoleCursorPosition(consoleHandle, z);
 			if (pointer == i)
 			{
-				SetConsoleTextAttribute(consoleHandle, (WORD)((Black << 4) | Red));
+				SetConsoleTextAttribute(consoleHandle, (WORD)((White  << 4) | Black));
 				cout << "-->";
 			}
 			else
 			{
 				cout << " ";
-				SetConsoleTextAttribute(consoleHandle, (WORD)((Black << 4) | Yellow));
+				SetConsoleTextAttribute(consoleHandle, (WORD)((White << 4) | Blue));
 			}
 			cout << i + 1 << " - " << menuElems[i] << endl;
 			coord1.Y++;
@@ -94,7 +96,7 @@ int menu_category(string menuElems[], int size, const char* inf,jmp_buf env)
 	while (true)
 	{
 		coord1 = coord;
-		SetConsoleTextAttribute(consoleHandle, (WORD)((Black << 4) | Yellow));
+		SetConsoleTextAttribute(consoleHandle, (WORD)((White << 4) | Blue));
 		system("cls");
 		cout << inf << endl;
 		for (int i = 0; i < size / sizeof(menuElems[0]); i++)
@@ -102,15 +104,14 @@ int menu_category(string menuElems[], int size, const char* inf,jmp_buf env)
 			SetConsoleCursorPosition(consoleHandle, coord1);
 			if (pointer == i)
 			{
-				SetConsoleTextAttribute(consoleHandle, (WORD)((Black << 4) | Red));
+				SetConsoleTextAttribute(consoleHandle, (WORD)((White << 4) | Black));
 				cout << "-->";
 			}
 			else
 			{
-				cout << " ";
-				SetConsoleTextAttribute(consoleHandle, (WORD)((Black << 4) | Yellow));
+				SetConsoleTextAttribute(consoleHandle, (WORD)((White << 4) | Blue));
 			}
-			cout << i + 1 << " - " << menuElems[i] << endl;
+			cout<< i + 1 << " - " << menuElems[i] << endl;
 			coord1.Y++;
 		}
 		code = _getch();

@@ -34,7 +34,7 @@ int main_menu()
 		goto start;
 	case 2:
 		system("cls");
-		SetConsoleTextAttribute(main_menu_Handle, (WORD)((Black << 4) | Yellow));
+		SetConsoleTextAttribute(main_menu_Handle, (WORD)((White << 4) | Blue));
 		cout << "До свидания" << endl;
 		system("pause");
 		exit(0);

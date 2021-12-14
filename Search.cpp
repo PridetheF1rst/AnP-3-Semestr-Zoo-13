@@ -43,7 +43,7 @@ void search(zoo* beg,jmp_buf env)
 
 		switch (menu_category(how_searh, sizeof(how_searh), "По какому параметру вы хотите найти ? \n Вы можете нажать ESC для выхода в меню",env))
 		{
-			SetConsoleTextAttribute(SearchHandle, (WORD)((Black << 4) | Yellow));
+			SetConsoleTextAttribute(SearchHandle, (WORD)((White << 4) | Blue));
 		case 0:
 			system("cls");
 			cursor_off_on(TRUE);

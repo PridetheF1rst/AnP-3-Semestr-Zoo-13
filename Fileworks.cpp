@@ -32,7 +32,7 @@ int read_file(string filename, zoo** beg, zoo** end)
 			*end = add(*end, d);//добавляем к концу списка
 		}
 	}
-	SetConsoleTextAttribute(FileworksHandle, (WORD)((Black << 4) | Yellow));
+	SetConsoleTextAttribute(FileworksHandle, (WORD)((White << 4) | Blue));
 	cout << "Считана информация из файла " << filename << endl;
 	return 0;
 }
@@ -55,7 +55,7 @@ int write_in_file(string filename, zoo* temp)
 		fout << temp->p_money << endl;//запись суммы денег потраченных на продукты
 		temp = temp->next;//переход к следующей структуре
 	}
-	SetConsoleTextAttribute(FileworksHandle, (WORD)((Black << 4) | Yellow));
+	SetConsoleTextAttribute(FileworksHandle, (WORD)((White << 4) | Blue));
 	cout << "Данные сохранены в файле: " << filename << endl;
 	return 0;
 }

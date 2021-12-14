@@ -94,7 +94,7 @@ void processing(zoo* beg)
 			filename_processing += ".data";
 			break;
 		}
-		SetConsoleTextAttribute(ProcessingHandle, (WORD)((Black << 4) | Yellow));
+		SetConsoleTextAttribute(ProcessingHandle, (WORD)((White << 4) | Blue));
 		processing_write_in_file(filename_processing, beg_p);
 	}
 	else cout << "Ќе найдены элементы списка , которые могут соответствовать указанному периоду!" << endl;

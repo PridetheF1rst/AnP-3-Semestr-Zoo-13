@@ -4,12 +4,12 @@
 
 enum Keys {
 	NoPressed,
+	Enter = 13,
+	Esc = 27,
 	Up = 72,
-	Down = 80,
 	Left = 75,
 	Right = 77,
-	Esc = 27,
-	Enter = 13,
+	Down = 80,
 };
 
 enum ConsoleColor {

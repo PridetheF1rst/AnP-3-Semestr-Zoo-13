@@ -25,11 +25,11 @@ void sort_by_field(zoo* beg,jmp_buf env)
 	if (beg)
 	{
 		how_sort = menu_category(_sort, sizeof(_sort), " акую сортировку вы хотите выбрать ?\n ¬ы можете нажать ESC дл€ выхода в меню",env);
-		SetConsoleTextAttribute(sortHandle, (WORD)((Black << 4) | Yellow));
+		SetConsoleTextAttribute(sortHandle, (WORD)((White << 4) | Blue));
 		zoo* temp_1, temp_2;
 		switch (menu(field, sizeof(field), "ѕо какому параметру вы хотите отсортировать ? "))
 		{
-			SetConsoleTextAttribute(sortHandle, (WORD)((Black << 4) | Yellow));
+			SetConsoleTextAttribute(sortHandle, (WORD)((White << 4) | Blue));
 		case 0:
 			system("cls");
 			sort_cage(beg, how_sort);

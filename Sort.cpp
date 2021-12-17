@@ -76,36 +76,36 @@ void sort_by_field(zoo* beg,jmp_buf env)
 /*Смена местами при сортировке*/
 void sort_replace(zoo* left, zoo* right, zoo* temp)
 {
-	temp->cage = left->cage;              //И переставляем все внутренние элементы, за исключением указателей связи, местами
-	left->cage = right->cage;             //Сейчас у нас имеется только x, поэтому только его
+	temp->cage = left->cage;              
+	left->cage = right->cage;             
 	right->cage = temp->cage;
-	//иначе бы  нужно было это проделывать для каждого несвязующего элемента
-	strcpy(temp->name, left->name);              //И переставляем все внутренние элементы, за исключением указателей связи, местами
-	strcpy(left->name, right->name);             //Сейчас у нас имеется только x, поэтому только его
+
+	strcpy(temp->name, left->name);        
+	strcpy(left->name, right->name);      
 	strcpy(right->name, temp->name);
 
-	strcpy(temp->specie, left->specie);              //И переставляем все внутренние элементы, за исключением указателей связи, местами
-	strcpy(left->specie, right->specie);             //Сейчас у нас имеется только x, поэтому только его
+	strcpy(temp->specie, left->specie);              
+	strcpy(left->specie, right->specie);             
 	strcpy(right->specie, temp->specie);
 
-	strcpy(temp->area, left->area);              //И переставляем все внутренние элементы, за исключением указателей связи, местами
-	strcpy(left->area, right->area);             //Сейчас у нас имеется только x, поэтому только его
+	strcpy(temp->area, left->area);              
+	strcpy(left->area, right->area);             
 	strcpy(right->area, temp->area);
 
-	strcpy(temp->p_type, left->p_type);              //И переставляем все внутренние элементы, за исключением указателей связи, местами
-	strcpy(left->p_type, right->p_type);             //Сейчас у нас имеется только x, поэтому только его
+	strcpy(temp->p_type, left->p_type);            
+	strcpy(left->p_type, right->p_type);         
 	strcpy(right->p_type, temp->p_type);
 
-	temp->p_weight = left->p_weight;              //И переставляем все внутренние элементы, за исключением указателей связи, местами
-	left->p_weight = right->p_weight;             //Сейчас у нас имеется только x, поэтому только его
+	temp->p_weight = left->p_weight;    
+	left->p_weight = right->p_weight;          
 	right->p_weight = temp->p_weight;
 
-	temp->p_money = left->p_money;              //И переставляем все внутренние элементы, за исключением указателей связи, местами
-	left->p_money = right->p_money;             //Сейчас у нас имеется только x, поэтому только его
+	temp->p_money = left->p_money;       
+	left->p_money = right->p_money;     
 	right->p_money = temp->p_money;
 
-	strcpy(temp->date, left->date);              //И переставляем все внутренние элементы, за исключением указателей связи, местами
-	strcpy(left->date, right->date);             //Сейчас у нас имеется только x, поэтому только его
+	strcpy(temp->date, left->date);    
+	strcpy(left->date, right->date);     
 	strcpy(right->date, temp->date);
 }
 

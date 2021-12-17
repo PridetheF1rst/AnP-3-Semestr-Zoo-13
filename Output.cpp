@@ -24,7 +24,7 @@ void see_the_information(zoo* beg,zoo* end)
 			print_on_the_screen(*temp);
 			if (temp->next == nullptr)
 			{
-				if (beg->id != temp->id) cout << endl << "Для перехода на предыдущую страницу нажмите <-";
+				if (temp->id>13) cout << endl << "Для перехода на предыдущую страницу нажмите <-";
 				else cout <<endl<< "\t\t\t\t\t";
 				cout<<"\t\t\t" << "Страница номер " << page_end << " из " << page_end << "\t\t\t\t\t  Для выхода нажмите Esc " << endl;
 				key = _getch();
@@ -33,13 +33,13 @@ void see_the_information(zoo* beg,zoo* end)
 				case Left:
 				{
 					int i = 0;
-					while (temp->prev->id % 13 != 0 && temp->prev!=nullptr)
+					while (temp->prev != nullptr && temp->id != beg->id && temp->prev->id % 13 != 0 )
 					{
 						temp = temp->prev;
 						i++;
 					}
 					i = 0;
-					while (i < 12 && temp->prev != nullptr)
+					while (i < 12 && temp->prev != nullptr && temp->id!=beg->id)
 					{
 						temp = temp->prev;
 						i++;

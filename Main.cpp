@@ -239,7 +239,7 @@ int main()
 						cursor_off_on(TRUE);
 						system("cls");
 						SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
-						int num = 0;
+						unsigned int num = 0;
 						if (filename != "" && count_id_del == 0) { cin.ignore(); count_id_del++; }
 						num = inp_int(num, "Введите ID элемента");
 						cursor_off_on(FALSE); 
@@ -282,7 +282,7 @@ int main()
 			system("cls");
 			if (beg)
 			{
-				int num = 0;
+				unsigned int num = 0;
 				cursor_off_on(TRUE);
 				SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
 				if (filename != "" && count_id_change == 0) { cin.ignore(); count_id_change++; }

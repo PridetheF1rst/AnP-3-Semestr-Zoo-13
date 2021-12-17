@@ -21,12 +21,14 @@ void see_the_information(zoo* beg,zoo* end)
 		header();
 		do//пока список не кончился
 		{
+			strt:
 			print_on_the_screen(*temp);
 			if (temp->next == nullptr)
 			{
 				if (temp->id>13) cout << endl << "Для перехода на предыдущую страницу нажмите <-";
 				else cout <<endl<< "\t\t\t\t\t";
 				cout<<"\t\t\t" << "Страница номер " << page_end << " из " << page_end << "\t\t\t\t\t  Для выхода нажмите Esc " << endl;
+				button_end:
 				key = _getch();
 				switch (key)
 				{
@@ -51,8 +53,8 @@ void see_the_information(zoo* beg,zoo* end)
 				}
 				case Esc:
 					goto end;
-				default:
-					break;
+				default: 
+					goto button_end;
 				}
 			}
 			else
@@ -68,6 +70,7 @@ void see_the_information(zoo* beg,zoo* end)
 						cout << endl << "\t\t\t\t\t\t\tДля выхода нажмите Esc " << endl;
 
 					}
+					button:
 					key = _getch();
 					switch (key)
 					{
@@ -96,7 +99,7 @@ void see_the_information(zoo* beg,zoo* end)
 					case Esc:
 						goto end;
 					default:
-						break;
+						goto button;
 					}
 					system("cls");
 					cout << "Список животных зоопарка:" << endl;

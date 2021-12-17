@@ -21,7 +21,6 @@ void processing(zoo* beg)
 	string filename_processing;
 	system("cls");
 	cursor_off_on(TRUE);
-	cin.ignore();
 	cout << "¬ведите дату начала" << endl;
 	inp_date(time1);
 	cout << "¬ведите дату окончани€" << endl;

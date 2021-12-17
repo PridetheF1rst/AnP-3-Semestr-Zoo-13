@@ -61,8 +61,8 @@ int main()
 	SetConsoleScreenBufferSize(out_handle, maxWindow);
 	SetConsoleWindowInfo(out_handle, true, &srctWindow);
 	system("title Система работы с зоопарком");
-	system("mode 650");
-	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
+	//system("mode 650");
+	//ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 
 	main_menu();
 
@@ -84,16 +84,16 @@ int main()
 	},
 		menuElems[] = {
 		"Создание списка", //0
-		"Добавление элемента", //1
-		"Удаление по ключевому полю", //2
-		"Корректировка", //3
-		"Сортировка", //4
-		"Поиск (не по ключевому полю)", //5
-		"Просмотр",//6
-		"Сохранение в файл" ,//7
-		"Чтение из файла" ,//8
-		"Обработка",//9
-		"Выход" ,//10
+		"Добавление записи", //1
+		"Удаление записи", //2
+		"Редактирование записи", //3
+		"Сортировка списка", //4
+		"Поиск записи", //5
+		"Просмотр списка",//6
+		"Сохранение списка в файл" ,//7
+		"Чтение списка из файла" ,//8
+		"Подсчёт суммы и веса употреблённых продуктов всеми видами пород животных",//9
+		"Выход из программы" ,//10
 	},
 	delete_e[] = {
 	"Удалить весь список.",
@@ -225,8 +225,6 @@ int main()
 						dellete_all(beg);
 						SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
 						cout << "Все элементы были удалены" << endl;
-						cin.ignore();
-						cin.get();
 						beg = end = 0;
 						break;
 					case 1:
@@ -330,7 +328,6 @@ int main()
 		{
 			system("cls");
 			see_the_information(beg,end);
-			system("pause");
 			break;
 		}
 		case 7:

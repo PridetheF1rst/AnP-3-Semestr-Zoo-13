@@ -34,6 +34,7 @@ int read_file(string filename, zoo** beg, zoo** end)
 	}
 	SetConsoleTextAttribute(FileworksHandle, (WORD)((White << 4) | Blue));
 	cout << "—читана информаци€ из файла " << filename << endl;
+	cout << "—читано следущее количество записей :" << (*end)->id << endl;
 	return 0;
 }
 

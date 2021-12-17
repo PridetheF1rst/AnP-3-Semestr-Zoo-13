@@ -48,7 +48,7 @@ int inp_int(int n, const char* inf)
 	cin >> noskipws >> n;
 	do
 	{
-		if (!cin)
+		if (!cin ||n<0)
 		{
 			int_ = false;
 			system("cls");
@@ -131,7 +131,7 @@ float inp_float(float temp, const char* inf)
 	cin >> noskipws >> temp;
 	do
 	{
-		if (!cin)
+		if (!cin ||temp<0)
 		{
 			float_ = false;
 			cin.clear();

@@ -334,6 +334,7 @@ int main()
 		{
 			system("cls");
 			cursor_off_on(TRUE);
+			if (!filename.empty()) cin.ignore();
 			filename = inp_filename(filename, "Введите имя файла , который хотите сохранить(без расширения)");
 			cursor_off_on(FALSE);
 			switch (menu(type, sizeof(type), "В каком расширении вы хотите сохранить файл ?"))
@@ -354,7 +355,7 @@ int main()
 		{
 			system("cls");
 			cursor_off_on(TRUE);
-			if (beg) { cin.ignore(); }
+			if (!filename.empty()) cin.ignore();
 			filename = inp_filename(filename, "Введите имя файла , который хотите открыть(без расширения)");
 			cursor_off_on(FALSE);
 			switch (menu(type, sizeof(type), "В каком расширении вы хотите открыть файл ?"))

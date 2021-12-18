@@ -21,7 +21,6 @@ void see_the_information(zoo* beg,zoo* end)
 		header();
 		do//пока список не кончился
 		{
-			strt:
 			print_on_the_screen(*temp);
 			if (temp->next == nullptr)
 			{

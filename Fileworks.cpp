@@ -10,7 +10,7 @@ HANDLE FileworksHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 /*Чтение из файла*/
 int read_file(string filename, zoo** beg, zoo** end)
 {
-	ifstream fin(filename, ios::in | ios::_Nocreate);
+	ifstream fin(filename,ios::_Nocreate);
 	if (!fin) { cout << "Файл " << filename << " не найден!" << endl; cin.get(); return 1; }//файл не найден
 	zoo d;
 	while (fin.getline(d.name, n_n))//пока в файле есть структуры

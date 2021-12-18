@@ -10,8 +10,15 @@ HANDLE FileworksHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 /*Чтение из файла*/
 int read_file(string filename, zoo** beg, zoo** end)
 {
-	ifstream fin(filename,ios::_Nocreate);
+	SetConsoleTextAttribute(FileworksHandle, (WORD)((White << 4) | Blue));
+	string type = ".data";
+	ifstream fin;
+	fin = ifstream(filename, ios::_Nocreate);
 	if (!fin) { cout << "Файл " << filename << " не найден!" << endl; cin.get(); return 1; }//файл не найден
+	if (filename.find(type) != std::string::npos) 
+	{
+		fin = ifstream(filename, ios::binary|ios::_Nocreate);
+	}
 	zoo d;
 	while (fin.getline(d.name, n_n))//пока в файле есть структуры
 	{//считываем кличку
@@ -32,7 +39,6 @@ int read_file(string filename, zoo** beg, zoo** end)
 			*end = add(*end, d);//добавляем к концу списка
 		}
 	}
-	SetConsoleTextAttribute(FileworksHandle, (WORD)((White << 4) | Blue));
 	cout << "Считана информация из файла " << filename << endl;
 	cout << "Считано следущее количество записей :" << (*end)->id << endl;
 	return 0;
@@ -41,9 +47,16 @@ int read_file(string filename, zoo** beg, zoo** end)
 /*Запись в файл*/
 int write_in_file(string filename, zoo* temp)
 {
-	ofstream fout(filename);
+	SetConsoleTextAttribute(FileworksHandle, (WORD)((White << 4) | Blue));
+	string type = ".data";
+	ofstream fout;
+	fout = ofstream(filename);
 	if (!fout) { cout << "Не могу открыть файл для записи" << endl; return 1; }//если поток 
 	//открыть невозможно - вывести сообщение об ошибке
+	if (filename.find(type) != std::string::npos)
+	{
+		fout = ofstream(filename, ios::binary);
+	}
 	while (temp)//пока список не закончился
 	{
 		fout << temp->name << endl;//запись клички животного
@@ -56,7 +69,6 @@ int write_in_file(string filename, zoo* temp)
 		fout << temp->p_money << endl;//запись суммы денег потраченных на продукты
 		temp = temp->next;//переход к следующей структуре
 	}
-	SetConsoleTextAttribute(FileworksHandle, (WORD)((White << 4) | Blue));
 	cout << "Данные сохранены в файле: " << filename << endl;
 	return 0;
 }

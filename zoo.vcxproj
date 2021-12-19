@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Change.cpp" />
-    <ClCompile Include="Main_Menu.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Fileworks.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -155,7 +154,6 @@
     <ClInclude Include="Change.h" />
     <ClInclude Include="Fileworks.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="Main_Menu.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Processing.h" />

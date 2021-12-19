@@ -4,7 +4,7 @@
 			   Программа для работы с базой зоопарка
 														   Текст программы
 																РАЗРАБОТАЛ
-													тудент гр. ИC/б-20-1-о
+													студент гр. ИC/б-20-1-о
 															 Бугаенко Д.В.
 								 2021
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -21,7 +21,7 @@
 - выбор записей о животных, попадающих в заданный пользователем диапазон дат.
 Вариант задания 13. Утверждено 01.09.2021
 Среда программирования Microsoft Visual Studio 22 Preview version 17.1.0 Preview 1.1
-Дата последней коррекции: 11.12.2021 .
+Дата последней коррекции: 19.12.2021 .
 Версия 1.0
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 #include <iostream>
@@ -43,7 +43,6 @@
 #include "Queue.h"
 #include "Search.h"
 #include "Sort.h"
-#include "Main_Menu.h"
 
 HANDLE mainHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -61,16 +60,14 @@ int main()
 	SetConsoleScreenBufferSize(out_handle, maxWindow);
 	SetConsoleWindowInfo(out_handle, true, &srctWindow);
 	system("title Система работы с зоопарком");
-	//system("mode 650");
-	//ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 
-	main_menu();
+	start_menu();
 
 	zoo* beg = 0,//начало и
 		* end = 0;//конец равны нулю
 
-	string filename = "";
-	string hello[] = {
+	string filename = "", ques = "",
+	hello[] = {
 		"Использовать существующий файл", //0
 		"Создать новый список", //1
 	},
@@ -78,11 +75,11 @@ int main()
 	"Да",
 	"Нет"
 	},
-		type[] = {
+	type[] = {
 		"txt",//0
 		"data" //1
 	},
-		menuElems[] = {
+	menuElems[] = {
 		"Создание списка", //0
 		"Добавление записи", //1
 		"Удаление записи", //2
@@ -100,6 +97,7 @@ int main()
 	"Удалить конкретный элемент."
 	};
 	int count_input = 0,count_id_del=0,count_id_change=0;
+	jmp_buf menu_choice;
 	cursor_off_on(FALSE);
 	switch (menu(hello, sizeof(hello), "Для взаимодействия с программой необходимо использовать или создать список.\nВыберите пункт меню"))
 	{
@@ -109,7 +107,8 @@ int main()
 		cursor_off_on(TRUE);
 		filename = inp_filename(filename, "Введите имя файла , который хотите открыть(без расширения)");
 		cursor_off_on(FALSE);
-		switch (menu(type, sizeof(type), "Какое расширение у файла ?"))
+		ques = "Какое расширение у файла '" + filename + "' ?";
+		switch (menu(type, sizeof(type),ques))
 		{
 		case 0:
 			filename += ".txt";
@@ -130,11 +129,9 @@ int main()
 		break;
 	}
 
-
 	do
 	{
-		jmp_buf start_menu ;
-		setjmp(start_menu);
+		setjmp(menu_choice);
 		cursor_off_on(FALSE);
 		switch (menu(menuElems, sizeof(menuElems), "Система работы с зоопарком\n==================================\nИспользуйте стрелочки для перемещения"))
 		{
@@ -144,7 +141,7 @@ int main()
 			system("cls");
 			if (beg != 0)
 			{
-				switch (menu_category(yes_no, sizeof(yes_no), "Для создание нового списка требуется удалить старый . Вы хотите сохранить старый список ?\n Вы можете нажать ESC для выхода в меню", start_menu))
+				switch (menu_category(yes_no, sizeof(yes_no), "Для создание нового списка требуется удалить старый . Вы хотите сохранить старый список ?\n Вы можете нажать ESC для выхода в меню", menu_choice))
 				{
 					SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
 				case 0:
@@ -213,7 +210,7 @@ int main()
 			if (!beg) { cout << "Невозможно выполнить операцию ! Очередь пуста!" << endl; }
 			else
 			{
-				switch (menu_category(delete_e, sizeof(delete_e), "Вы хотите удалить весь список или конкретный элемент ?\n Вы можете нажать ESC для выхода в меню",start_menu))
+				switch (menu_category(delete_e, sizeof(delete_e), "Вы хотите удалить весь список или конкретный элемент ?\n Вы можете нажать ESC для выхода в меню",menu_choice))
 				{
 					case 0:
 						{
@@ -313,14 +310,14 @@ int main()
 		case 4:
 		{
 			system("cls");
-			sort_by_field(beg,start_menu);
+			sort_by_field(beg,menu_choice);
 			system("pause");
 			break;
 		}
 		case 5:
 		{
 			system("cls");
-			search(beg,start_menu);
+			search(beg,menu_choice);
 			system("pause");
 			break;
 		}
@@ -334,10 +331,12 @@ int main()
 		{
 			system("cls");
 			cursor_off_on(TRUE);
+			ques = "";
 			if (!filename.empty()) cin.ignore();
 			filename = inp_filename(filename, "Введите имя файла , который хотите сохранить(без расширения)");
 			cursor_off_on(FALSE);
-			switch (menu(type, sizeof(type), "В каком расширении вы хотите сохранить файл ?"))
+			ques = "В каком расширении вы хотите сохранить файл '" + filename + "' ?";
+			switch (menu(type, sizeof(type), ques))
 			{
 				SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
 			case 0:
@@ -355,10 +354,12 @@ int main()
 		{
 			system("cls");
 			cursor_off_on(TRUE);
+			ques = "";
 			if (!filename.empty()) cin.ignore();
 			filename = inp_filename(filename, "Введите имя файла , который хотите открыть(без расширения)");
 			cursor_off_on(FALSE);
-			switch (menu(type, sizeof(type), "В каком расширении вы хотите открыть файл ?"))
+			ques = "В каком расширении вы хотите открыть файл '" + filename + "' ?";
+			switch (menu(type, sizeof(type), ques))
 			{
 				SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
 			case 0:
@@ -395,9 +396,11 @@ int main()
 					{
 						cursor_off_on(TRUE);
 						if (beg) { cin.ignore(); }
+						ques = "";
 						filename = inp_filename(filename, "Введите имя файла , который хотите сохранить(без расширения)");
 						cursor_off_on(FALSE);
-						switch (menu(type, sizeof(type), "В каком расширении вы хотите сохранить файл ?"))
+						ques = "В каком расширении вы хотите сохранить файл '" + filename + "' ?";
+						switch (menu(type, sizeof(type), ques))
 						{
 							SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
 						case 0:

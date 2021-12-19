@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <csetjmp>
 #include "zoo.h"
-#include "Main_Menu.h"
+#include "Input.h"
 
 using namespace std;
 
@@ -19,7 +19,12 @@ void GetBufferInfo(COORD* coord)
 	coord->Y = (csbInfo.srWindow.Bottom - csbInfo.srWindow.Top + 1);
 }
 
-int menu(string menuElems[], int size, const char* inf)
+void goto_x_y(short x, short y)
+{
+	SetConsoleCursorPosition(consoleHandle, { x, y });
+}
+
+int menu(string menuElems[], int size, string inf)
 {
 	COORD coord1;
 	GetBufferInfo(&coord);
@@ -35,9 +40,6 @@ int menu(string menuElems[], int size, const char* inf)
 		cout << inf << endl;
 		for (int i = 0; i < size / sizeof(menuElems[0]); i++)
 		{
-			COORD z;
-			z.X = 22; z.Y = 15 + i;
-			//SetConsoleCursorPosition(consoleHandle, z);
 			if (pointer == i)
 			{
 				SetConsoleTextAttribute(consoleHandle, (WORD)((White  << 4) | Black));
@@ -85,7 +87,7 @@ int menu(string menuElems[], int size, const char* inf)
 	return EXIT_SUCCESS;
 }
 
-int menu_category(string menuElems[], int size, const char* inf,jmp_buf env)
+int menu_category(string menuElems[], int size, string inf,jmp_buf env)
 {
 	COORD coord1;
 	GetBufferInfo(&coord);
@@ -150,4 +152,35 @@ int menu_category(string menuElems[], int size, const char* inf,jmp_buf env)
 		}
 	}
 	return EXIT_SUCCESS;
+}
+
+int start_menu()
+{
+	cursor_off_on(FALSE);
+	string main_menu_buttons[] = { "Начать","О программе","Выход" };
+	string about[] = { "Программа была разработана для работы с базой данных зоопарка в рамках третьего семестра по дисциплине 'Алгоритмизация и Программирование'\n",
+	"Полный код программы вы можете найти по ссылке https://github.com/PridetheF1rst/AnP-3-Semestr-Zoo-13.git \n","\t\t\t\tВерсия 1.0" };
+start:
+	switch (menu(main_menu_buttons, sizeof(main_menu_buttons), "Добро пожаловать в программу работы с зоопарком !\n================================================="))
+	{
+	case 0:
+		return 0;
+	case 1:
+		system("cls");
+		for (int i = 0; i < 3; i++)
+		{
+			goto_x_y(5 + i * 17, 15 + i);
+			cout << about[i];
+		}
+		cout << endl;
+		goto_x_y(50, 19);
+		system("pause");
+		goto start;
+	case 2:
+		system("cls");
+		SetConsoleTextAttribute(consoleHandle, (WORD)((White << 4) | Blue));
+		cout << "До свидания" << endl;
+		system("pause");
+		exit(0);
+	}
 }

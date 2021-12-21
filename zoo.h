@@ -4,6 +4,7 @@
 
 enum Keys {
 	NoPressed,
+	Ctrl = 17,
 	Enter = 13,
 	Esc = 27,
 	Up = 72,

@@ -37,8 +37,7 @@ void search(zoo* beg,jmp_buf env)
 			"Тип продуктов",
 			"Вес продуктов (в килограммах)",
 			"Стоимоисть потребляемых продуктов (в рублях)",
-			"Дату",
-			"Вернуться в меню"
+			"Дату"
 		};
 
 		switch (menu_category(how_searh, sizeof(how_searh), "По какому параметру вы хотите найти ? \n Вы можете нажать ESC для выхода в меню",env))
@@ -92,8 +91,6 @@ void search(zoo* beg,jmp_buf env)
 			inp_date(data);
 			search_date(beg, data);
 			break;
-		case 8:
-			return;
 		}
 	}
 	else

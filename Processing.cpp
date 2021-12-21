@@ -79,20 +79,8 @@ void processing(zoo* beg)
 		show_processing(beg_p);
 		cursor_off_on(TRUE);
 		filename_processing = inp_filename(filename_processing, "Введите имя файла , который хотите сохранить(без расширения)");
+		filename_processing += "txt";
 		cursor_off_on(FALSE);
-		string type[] = {
-			"txt",//0
-			"data" //1
-		};
-		switch (menu(type, sizeof(type), "В каком расширении вы хотите сохранить файл ?"))
-		{
-		case 0:
-			filename_processing += ".txt";
-			break;
-		case 1:
-			filename_processing += ".data";
-			break;
-		}
 		SetConsoleTextAttribute(ProcessingHandle, (WORD)((White << 4) | Blue));
 		processing_write_in_file(filename_processing, beg_p);
 	}

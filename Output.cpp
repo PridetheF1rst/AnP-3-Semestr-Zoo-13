@@ -7,7 +7,7 @@
 /*Просмотр списка*/
 void see_the_information(zoo* beg,zoo* end)
 {
-	if (!beg) { cout << "Информация отсутствует !" << endl;  return; }
+	if (!beg) { cout << "Информация отсутствует !" << endl; system("pause"); return; }
 	else
 	{
 		int key;

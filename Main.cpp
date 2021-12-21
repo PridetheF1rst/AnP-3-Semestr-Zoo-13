@@ -33,6 +33,7 @@
 #include <Windows.h>
 #include <cctype>
 #include <setjmp.h>
+//#include <mmsystem.h>
 #include "zoo.h"
 #include "Change.h"
 #include "Fileworks.h"
@@ -42,7 +43,8 @@
 #include "Processing.h"
 #include "Queue.h"
 #include "Search.h"
-#include "Sort.h"
+#include "Sort.h" 
+//#pragma comment (lib, "Winmm.lib")
 
 HANDLE mainHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -74,6 +76,10 @@ int main()
 	yes_no[] = {
 	"Да",
 	"Нет"
+	},
+	add_new[]={
+		"Добавить к списку",
+		"Заменить список"
 	},
 	type[] = {
 		"txt",//0
@@ -355,7 +361,6 @@ int main()
 			system("cls");
 			cursor_off_on(TRUE);
 			ques = "";
-			if (!filename.empty()) cin.ignore();
 			filename = inp_filename(filename, "Введите имя файла , который хотите открыть(без расширения)");
 			cursor_off_on(FALSE);
 			ques = "В каком расширении вы хотите открыть файл '" + filename + "' ?";
@@ -367,6 +372,17 @@ int main()
 				break;
 			case 1:
 				filename += ".data";
+				break;
+			}
+			switch (menu(add_new, sizeof(add_new), "Вы хотите добавить список из файла к текущему списку или заменить его ?"))
+			{
+			case 0:
+				cout << "Данные будут добавлены к текущему списку." << endl;
+				break;
+			case 1:
+				cout << "Текущий список будет заменён." << endl;
+				dellete_all(beg);
+				beg = end = 0;
 				break;
 			}
 			read_file(filename, &beg, &end);
@@ -390,10 +406,6 @@ int main()
 				{
 					case 0:
 					{
-					switch (menu(yes_no, sizeof(yes_no), "Вы хотите файл перед выходом ?"))
-					{
-					case 0:
-					{
 						cursor_off_on(TRUE);
 						if (beg) { cin.ignore(); }
 						ques = "";
@@ -415,13 +427,9 @@ int main()
 						break;
 					}
 					case 1:
-						break;
-					}
-				}
-					case 1:
 					{
 					break;
-				}
+				    }
 				}
 			}
 			SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));

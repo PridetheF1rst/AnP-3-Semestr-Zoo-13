@@ -46,8 +46,6 @@
 #include "Sort.h" 
 //#pragma comment (lib, "Winmm.lib")
 
-HANDLE mainHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-
 /*Главная функция*/
 int main()
 {
@@ -62,6 +60,8 @@ int main()
 	SetConsoleScreenBufferSize(out_handle, maxWindow);
 	SetConsoleWindowInfo(out_handle, true, &srctWindow);
 	system("title Система работы с зоопарком");
+	GWL_STYLE;
+
 
 	start_menu();
 
@@ -123,12 +123,12 @@ int main()
 			filename += ".data";
 			break;
 		}
-		SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
+		SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 		read_file(filename, &beg, &end);
 		system("pause");
 		break;
 	case 1:
-		SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
+		SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 		cout << "Был создан новый список" << endl;
 		beg = end = 0;
 		system("pause");
@@ -149,7 +149,7 @@ int main()
 			{
 				switch (menu_category(yes_no, sizeof(yes_no), "Для создание нового списка требуется удалить старый . Вы хотите сохранить старый список ?\n Вы можете нажать ESC для выхода в меню", menu_choice))
 				{
-					SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
+					SetConsoleTextAttribute(out_handle, (WORD)((Black << 4) | Yellow));
 				case 0:
 					cursor_off_on(TRUE);
 					cin.ignore();
@@ -164,14 +164,14 @@ int main()
 						filename += ".data";
 						break;
 					}
-					SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
+					SetConsoleTextAttribute(out_handle, (WORD)((Black << 4) | Yellow));
 					write_in_file(filename, beg);
 					cin.get();
 					dellete_all(beg);
 					beg = end = 0;
 					break;
 				case 1:
-					SetConsoleTextAttribute(mainHandle, (WORD)((Black << 4) | Yellow));
+					SetConsoleTextAttribute(out_handle, (WORD)((Black << 4) | Yellow));
 					dellete_all(beg);
 					beg = end = 0;
 					break;
@@ -187,7 +187,7 @@ int main()
 		}
 		case 1:
 		{
-			SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
+			SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 			system("cls");
 			cursor_off_on(TRUE);
 			if (beg) 
@@ -226,7 +226,7 @@ int main()
 					case 0:
 
 						dellete_all(beg);
-						SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
+						SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 						cout << "Все элементы были удалены" << endl;
 						beg = end = 0;
 						break;
@@ -239,7 +239,7 @@ int main()
 						{
 						cursor_off_on(TRUE);
 						system("cls");
-						SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
+						SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 						unsigned int num = 0;
 						if (filename != "" && count_id_del == 0) { cin.ignore(); count_id_del++; }
 						num = inp_int(num, "Введите ID элемента");
@@ -285,7 +285,7 @@ int main()
 			{
 				unsigned int num = 0;
 				cursor_off_on(TRUE);
-				SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
+				SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 				if (filename != "" && count_id_change == 0) { cin.ignore(); count_id_change++; }
 				num = inp_int(num, "Введите ID элемента");
 				cursor_off_on(FALSE);
@@ -344,7 +344,7 @@ int main()
 			ques = "В каком расширении вы хотите сохранить файл '" + filename + "' ?";
 			switch (menu(type, sizeof(type), ques))
 			{
-				SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
+				SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 			case 0:
 				filename += ".txt";
 				break;
@@ -366,7 +366,7 @@ int main()
 			ques = "В каком расширении вы хотите открыть файл '" + filename + "' ?";
 			switch (menu(type, sizeof(type), ques))
 			{
-				SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
+				SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 			case 0:
 				filename += ".txt";
 				break;
@@ -391,7 +391,7 @@ int main()
 		}
 		case 9:
 		{
-			SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
+			SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 			system("cls");
 			processing(beg);
 			system("pause");
@@ -414,7 +414,7 @@ int main()
 						ques = "В каком расширении вы хотите сохранить файл '" + filename + "' ?";
 						switch (menu(type, sizeof(type), ques))
 						{
-							SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
+							SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 						case 0:
 							filename += ".txt";
 							break;
@@ -428,11 +428,11 @@ int main()
 					}
 					case 1:
 					{
-					break;
+						break;
 				    }
 				}
 			}
-			SetConsoleTextAttribute(mainHandle, (WORD)((White << 4) | Blue));
+			SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 			cout << "До свидания" << endl;
 			system("pause");
 			system("cls");

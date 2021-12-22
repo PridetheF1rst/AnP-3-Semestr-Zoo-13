@@ -79,7 +79,7 @@ void processing(zoo* beg)
 		show_processing(beg_p);
 		cursor_off_on(TRUE);
 		filename_processing = inp_filename(filename_processing, "¬ведите им€ файла , который хотите сохранить(без расширени€)");
-		filename_processing += "txt";
+		filename_processing += ".txt";
 		cursor_off_on(FALSE);
 		SetConsoleTextAttribute(ProcessingHandle, (WORD)((White << 4) | Blue));
 		processing_write_in_file(filename_processing, beg_p);

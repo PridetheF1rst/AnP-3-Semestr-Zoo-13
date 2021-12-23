@@ -402,7 +402,7 @@ int main()
 			system("cls");
 			if (beg)
 			{
-				switch (menu(yes_no, sizeof(yes_no), "Вы хотите файл перед выходом ?"))
+				switch (menu(yes_no, sizeof(yes_no), "Вы хотите сохранить файл перед выходом ?"))
 				{
 					case 0:
 					{

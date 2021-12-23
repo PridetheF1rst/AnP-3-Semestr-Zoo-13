@@ -78,13 +78,11 @@ int menu(string menuElems[], int size, string inf)
 		{
 			SetConsoleCursorPosition(consoleHandle, coord1);
 			return pointer;
-			_getch();
 		}
 		default:
 			break;
 		}
 	}
-	return EXIT_SUCCESS;
 }
 
 int menu_category(string menuElems[], int size, string inf,jmp_buf env)
@@ -141,7 +139,6 @@ int menu_category(string menuElems[], int size, string inf,jmp_buf env)
 		{
 			SetConsoleCursorPosition(consoleHandle, coord1);
 			return pointer;
-			_getch();
 		}
 		case Esc:
 		{
@@ -151,7 +148,6 @@ int menu_category(string menuElems[], int size, string inf,jmp_buf env)
 			break;
 		}
 	}
-	return EXIT_SUCCESS;
 }
 
 int start_menu()

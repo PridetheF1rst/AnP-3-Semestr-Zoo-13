@@ -4,13 +4,12 @@
 
 enum Keys {
 	NoPressed,
-	Ctrl = 17,
-	Enter = 13,
-	Esc = 27,
-	Up = 72,
-	Left = 75,
-	Right = 77,
-	Down = 80,
+	Enter = 13,//Клавиша "Enter"
+	Esc = 27,//Клавиша "ESC"
+	Up = 72,//Клавиша "Up"
+	Left = 75,//Клавиша "Left"
+	Right = 77,//Клавиша "Right"
+	Down = 80,//Клавиша "Down"
 };
 
 enum ConsoleColor {

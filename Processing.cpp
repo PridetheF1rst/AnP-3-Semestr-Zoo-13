@@ -121,17 +121,18 @@ int processing_write_in_file(string filename, zoo* temp)
 	//открыть невозможно - вывести сообщение об ошибке
 	while (temp)//пока список не закончился
 	{
-		fout << temp->specie << endl;//запись вида животного
-		fout << temp->date << endl;//запись даты
-		fout << temp->p_weight << endl;//запись веса продуктов
+		fout<<"Порода животного :" << temp->specie << endl;//запись вида животного
+		fout<<"Дата :" << temp->date << endl;//запись даты
+		fout<<"Вес продуктов :" << temp->p_weight << endl;//запись веса продуктов
 		weight += temp->p_weight;//подсчёт всей массы
-		fout << temp->p_money << endl;//запись суммы денег потраченных на продукты
+		fout <<"Стоимость продуктов :" << temp->p_money << endl;//запись суммы денег потраченных на продукты
 		money += temp->p_money;//подсчёт всей суммы денег
 		temp = temp->next;//переход к следующей структуре
+		fout << endl;
 	}
 	fout << endl;
-	fout << weight << endl;//запись всей массы
-	fout << money << endl;//запись всей суммы денег
+	fout <<"Суммарный вес :" << weight << endl;//запись всей массы
+	fout << "Суммарная стоимость :" << money << endl;//запись всей суммы денег
 	cout << "Результаты обработки сохранены в файле: " << filename << endl;
 	return 0;
 }

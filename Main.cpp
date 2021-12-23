@@ -141,7 +141,6 @@ int main()
 		cursor_off_on(FALSE);
 		switch (menu(menuElems, sizeof(menuElems), "Система работы с зоопарком\n==================================\nИспользуйте стрелочки для перемещения"))
 		{
-
 		case 0:
 		{
 			system("cls");

@@ -139,7 +139,7 @@ int main()
 	{
 		setjmp(menu_choice);
 		cursor_off_on(FALSE);
-		switch (menu(menuElems, sizeof(menuElems), "Система работы с зоопарком\n==================================\nИспользуйте стрелочки для перемещения"))
+		switch (menu(menuElems, sizeof(menuElems), "\t\t\tСистема работы с зоопарком\n===============================================================================\n\tИспользуйте стрелочки для перемещения и Enter для выбора пункта меню\n==============================================================================="))
 		{
 		case 0:
 		{
@@ -240,7 +240,6 @@ int main()
 						system("cls");
 						SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 						unsigned int num = 0;
-						if (filename != "" && count_id_del == 0) { cin.ignore(); count_id_del++; }
 						num = inp_int(num, "Введите ID элемента");
 						cursor_off_on(FALSE); 
 						if (num<1 || num>end->id)
@@ -392,7 +391,8 @@ int main()
 		{
 			SetConsoleTextAttribute(out_handle, (WORD)((White << 4) | Blue));
 			system("cls");
-			processing(beg);
+			if (beg) processing(beg);
+			else cout << "Невозможно выполнить операцию ! Очередь пуста!" << endl;
 			system("pause");
 			break;
 		}

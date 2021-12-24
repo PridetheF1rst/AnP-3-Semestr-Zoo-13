@@ -116,7 +116,7 @@ float count_weight(zoo* beg_p)
 /*Запись данных обработки в файл*/
 int processing_write_in_file(string filename, zoo* temp)
 {
-	float money = 0, weight = 0;
+	float money = count_money(temp), weight = count_weight(temp);
 	ofstream fout(filename);
 	if (!fout) { cout << "Не могу открыть файл для записи" << endl; return 1; }//если поток 
 	//открыть невозможно - вывести сообщение об ошибке
@@ -125,9 +125,7 @@ int processing_write_in_file(string filename, zoo* temp)
 		fout<<"Порода животного :" << temp->specie << endl;//запись вида животного
 		fout<<"Дата :" << temp->date << endl;//запись даты
 		fout<<"Вес продуктов :" << temp->p_weight << endl;//запись веса продуктов
-		weight += temp->p_weight;//подсчёт всей массы
 		fout <<"Стоимость продуктов :" << temp->p_money << endl;//запись суммы денег потраченных на продукты
-		money += temp->p_money;//подсчёт всей суммы денег
 		temp = temp->next;//переход к следующей структуре
 		fout << endl;
 	}

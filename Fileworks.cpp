@@ -69,6 +69,7 @@ int read_file(string filename, zoo** beg, zoo** end)
 			}
 			count++;
 		}
+		fin.close();
 	}
 	cout << "Считана информация из файла " << filename << endl;
 	cout << "Считано следущее количество записей :" << count << endl;
@@ -120,6 +121,7 @@ int write_in_file(string filename, zoo* temp)
 			fout << temp->p_money << endl;//запись суммы денег потраченных на продукты
 			temp = temp->next;//переход к следующей структуре
 		}
+		fout.close();
 	}
 	cout << "Данные сохранены в файле: " << filename << endl;
 	return 0;

@@ -33,7 +33,7 @@ zoo* add(zoo* end, const zoo& z)
 zoo* dellete_id_beg(zoo* beg)
 {
 	zoo* temp;
-	if (!beg) { cout << "Невозможно выполнить операцию ! Очередь пуста!" << endl; return 0; }
+	if (!beg) { cout << "Невозможно выполнить операцию ! Очередь пуста!" << endl; return ; }
 	else
 	{
 		temp = beg;
@@ -56,24 +56,18 @@ zoo* dellete_id_beg(zoo* beg)
 /*Удаление по ключевому полю , если id равно id конца*/
 zoo* dellete_id_end(zoo* beg, zoo* end)
 {
+	if (!beg) { cout << "Невозможно выполнить операцию ! Очередь пуста!" << endl; return 0; }
 	zoo* temp;
-	temp = beg;
-	while (temp)
-	{
-		if (temp->next == end)
-		{
-			zoo* temp_1 = end;
-			temp->next = temp_1->next;
-			end = temp;
-			cout << "Выполнено удаление элемента с ID = " << temp_1->id << endl;
-			header();
-			print_on_the_screen(*temp_1);
-			cout << endl;
-			delete temp_1;
-			return end;
-		}
-		else temp = temp->next;
-	}
+	temp = end->prev;
+	zoo* temp_1 = end;
+	temp->next = end->next;
+	end = temp;
+	cout << "Выполнено удаление элемента с ID = " << temp_1->id << endl;
+	header();
+	print_on_the_screen(*temp_1);
+	cout << endl;
+	delete temp_1;
+	return end;
 }
 
 /*Удаление по ключевому полю*/

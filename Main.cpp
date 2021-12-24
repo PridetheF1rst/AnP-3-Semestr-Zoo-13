@@ -372,16 +372,19 @@ int main()
 				filename += ".data";
 				break;
 			}
-			switch (menu(add_new, sizeof(add_new), "Вы хотите добавить список из файла к текущему списку или заменить его ?"))
+			if (beg)
 			{
-			case 0:
-				cout << "Данные будут добавлены к текущему списку." << endl;
-				break;
-			case 1:
-				cout << "Текущий список будет заменён." << endl;
-				dellete_all(beg);
-				beg = end = 0;
-				break;
+				switch (menu(add_new, sizeof(add_new), "Вы хотите добавить список из файла к текущему списку или заменить его ?"))
+				{
+				case 0:
+					cout << "Данные будут добавлены к текущему списку." << endl;
+					break;
+				case 1:
+					cout << "Текущий список будет заменён." << endl;
+					dellete_all(beg);
+					beg = end = 0;
+					break;
+				}
 			}
 			read_file(filename, &beg, &end);
 			system("pause");

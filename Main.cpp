@@ -21,7 +21,7 @@
 - выбор записей о животных, попадающих в заданный пользователем диапазон дат.
 Вариант задания 13. Утверждено 01.09.2021
 Среда программирования Microsoft Visual Studio 22 Preview version 17.1.0 Preview 1.1
-Дата последней коррекции: 21.12.2021 .
+Дата последней коррекции: 26.12.2021 .
 Версия 1.0
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 #include <iostream>
@@ -53,7 +53,7 @@ int main()
 	HANDLE out_handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD maxWindow; // размер самого большого возможного консольного окна
 	maxWindow.X = 150;
-	maxWindow.Y = 45;
+	maxWindow.Y = 35;
 	SMALL_RECT srctWindow = { 0, 0, maxWindow.X - 1, maxWindow.Y - 1 };
 	SMALL_RECT minWindow = { 0, 0, 0, 0 };
 	SetConsoleWindowInfo(out_handle, true, &minWindow);

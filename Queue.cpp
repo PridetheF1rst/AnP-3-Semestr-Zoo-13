@@ -33,7 +33,7 @@ zoo* add(zoo* end, const zoo& z)
 zoo* dellete_id_beg(zoo* beg)
 {
 	zoo* temp;
-	if (!beg) { cout << "Невозможно выполнить операцию ! Очередь пуста!" << endl; return ; }
+	if (!beg) { cout << "Невозможно выполнить операцию ! Очередь пуста!" << endl; return 0; }
 	else
 	{
 		temp = beg;
